@@ -19,13 +19,8 @@ public class Group {
 	mappedBy="group",
 	fetch = FetchType.LAZY,
 	cascade = CascadeType.ALL)
-	private List<Area> areas;
 	
-	@OneToMany(
-	mappedBy="group",
-	fetch = FetchType.LAZY,
-	cascade = CascadeType.ALL)
-	private List<Dock> docks;
+	private List<Area> areas;
 	
 	public Group() {
 		
@@ -50,14 +45,6 @@ public class Group {
 
 	public void setAreas(List<Area> areas) {
 		this.areas = areas;
-	}
-
-	public List<Dock> getDocks() {
-		return docks;
-	}
-
-	public void setDocks(List<Dock> docks) {
-		this.docks = docks;
 	}
 	
 	

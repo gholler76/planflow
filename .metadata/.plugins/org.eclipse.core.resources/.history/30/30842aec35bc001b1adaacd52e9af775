@@ -51,14 +51,6 @@ public class Group {
 	public void setAreas(List<Area> areas) {
 		this.areas = areas;
 	}
-
-	public List<Dock> getDocks() {
-		return docks;
-	}
-
-	public void setDocks(List<Dock> docks) {
-		this.docks = docks;
-	}
 	
 	
 }

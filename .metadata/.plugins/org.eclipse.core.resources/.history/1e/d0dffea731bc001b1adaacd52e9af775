@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="veldefs")
-public class Veldef {
+public class VelDef {
 	private String primvel;
 	private String secvel;
 		
@@ -18,10 +18,10 @@ public class Veldef {
     @JoinColumn(name="velocity")
     private Velocity velocity;
     
-	public Veldef() {
+	public VelDef() {
 	}
     
-	public Veldef(Velocity velocity, String primvel, String secvel) {
+	public VelDef(Velocity velocity, String primvel, String secvel) {
 		this.velocity = velocity;
 		this.primvel = primvel;
 		this.secvel = secvel;

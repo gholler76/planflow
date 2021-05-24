@@ -19,12 +19,12 @@ public class Area {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="stortype")
-    private Storagetype storagetype;
+    private StorageType storagetype;
 
 	public Area() {
 	}
 
-	public Area(String area, Group group, Storagetype storagetype) {
+	public Area(String area, Group group, StorageType storagetype) {
 		this.area = area;
 		this.group = group;
 		this.storagetype = storagetype;
@@ -46,11 +46,11 @@ public class Area {
 		this.group = group;
 	}
 
-	public Storagetype getStoragetype() {
+	public StorageType getStoragetype() {
 		return storagetype;
 	}
 
-	public void setStoragetype(Storagetype storagetype) {
+	public void setStoragetype(StorageType storagetype) {
 		this.storagetype = storagetype;
 	}
 

@@ -22,13 +22,6 @@ public class Storagetype {
 	cascade = CascadeType.ALL)
 	private List<Area> areas;
 	
-	@OneToMany(
-	mappedBy="stortype",
-	fetch = FetchType.LAZY,
-	cascade = CascadeType.ALL)
-	private List<Dock> docks;
-	
-		
 	public Storagetype() {
 		
 	}
@@ -60,14 +53,6 @@ public class Storagetype {
 
 	public void setAreas(List<Area> areas) {
 		this.areas = areas;
-	}
-
-	public List<Dock> getDocks() {
-		return docks;
-	}
-
-	public void setDocks(List<Dock> docks) {
-		this.docks = docks;
 	}
 
 	

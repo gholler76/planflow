@@ -1,0 +1,26 @@
+package com.holler.planflow.models;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+
+@Entity
+@Table(name="locdefs")
+public class Locdef {
+	private String primloc;
+	private String secloc;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="loctype")
+    private Loctype loctype;
+    
+	public Locdef() {
+	}
+	
+	public Locdef(String primloc, String secloc, Loctype loctype) {
+		this.primloc = primloc;
+		this.secloc = secloc;
+		this.loctype = loctype;
+		
+	}
+
+}
