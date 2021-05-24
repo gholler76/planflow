@@ -1,0 +1,117 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(LocId.class)
+@Table(name="locs")
+public class Loc {
+	@Id
+	private String row;
+	@Id
+	private String xcoor;
+	@Id
+	private String ycoor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="area")
+    private Area area;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="loctype")
+	private Loctype loctype;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="velocity")
+	private Velocity velocity;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="status")
+	private Locstatus locstatus;
+	
+	public Loc() {
+		}
+
+	public Loc(
+			Area area,
+			String row,
+			String xcoor,
+			String ycoor,
+			Loctype loctype,
+			Velocity velocity
+			) 
+		{
+		this.area = area;
+		this.row = row;
+		this.xcoor= xcoor;
+		this.ycoor= ycoor;
+		this.loctype= loctype;
+		this.velocity = velocity;
+		
+	}
+	
+	public String getRow() {
+		return row;
+	}
+
+	public void setRow(String row) {
+		this.row = row;
+	}
+
+	public String getXcoor() {
+		return xcoor;
+	}
+
+	public void setXcoor(String xcoor) {
+		this.xcoor = xcoor;
+	}
+
+	public String getYcoor() {
+		return ycoor;
+	}
+
+	public void setYcoor(String ycoor) {
+		this.ycoor = ycoor;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public Area getLoctype() {
+		return loctype;
+	}
+
+	public void setLoctype(Area loctype) {
+		this.loctype = loctype;
+	}
+
+	public Area getVelocity() {
+		return velocity;
+	}
+
+	public void setVelocity(Area velocity) {
+		this.velocity = velocity;
+	}
+
+	public Area getStatus() {
+		return status;
+	}
+
+	public void setStatus(Area status) {
+		this.status = status;
+	}
+
+	
+
+}

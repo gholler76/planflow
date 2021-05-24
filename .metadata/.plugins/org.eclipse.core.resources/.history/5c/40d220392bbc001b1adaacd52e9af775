@@ -1,0 +1,36 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="loctypes")
+public class Loctype {
+	@Id
+	private String loctype;
+	private Integer widfrom;
+	private Integer widto;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Stortype storytype;
+	
+	public Loctype () {
+		
+	}
+	
+	public Loctype (
+			String loctype,
+			Integer widfrom,
+			Integer widto,
+			String stortype) {
+		this.loctype = loctype;
+		this.widfrom = widfrom;
+		this.widto = widto;
+		this.stortype= stortype;
+	}
+	
+	
+
+}

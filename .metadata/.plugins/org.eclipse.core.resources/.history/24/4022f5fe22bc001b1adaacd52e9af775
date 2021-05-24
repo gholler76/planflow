@@ -1,0 +1,13 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="rows")
+public class Row {
+	@Id
+	private String locid;
+	
+
+}

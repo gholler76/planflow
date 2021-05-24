@@ -1,0 +1,56 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="veldefs")
+public class VelDef {
+	private String primvel;
+	private String secvel;
+		
+	@Id
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="velocity")
+    private Velocity velocity;
+    
+	public VelDef() {
+	}
+    
+	public VelDef(Velocity velocity, String primvel, String secvel) {
+		this.velocity = velocity;
+		this.primvel = primvel;
+		this.secvel = secvel;
+		}
+
+	public String getPrimvel() {
+		return primvel;
+	}
+
+	public void setPrimvel(String primvel) {
+		this.primvel = primvel;
+	}
+
+	public String getSecvel() {
+		return secvel;
+	}
+
+	public void setSecvel(String secvel) {
+		this.secvel = secvel;
+	}
+
+	public Velocity getVelocity() {
+		return velocity;
+	}
+
+	public void setVelocity(Velocity velocity) {
+		this.velocity = velocity;
+	}
+	
+	
+	
+}

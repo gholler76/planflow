@@ -1,0 +1,40 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(LocId.class)
+@Table(name="locs")
+public class Loc {
+	@Id
+	private String row;
+	@Id
+	private String xcoor;
+	@Id
+	private String ycoor;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="area")
+    private Area area;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="loctype")
+	private Area loctype;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="velocity")
+	private Area velocity;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="status")
+	private Area status;
+
+	
+
+}

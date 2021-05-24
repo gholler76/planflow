@@ -1,0 +1,12 @@
+package com.holler.planflow.models;
+
+@Entity
+@Table(name="areas")
+public class Area {
+	@Id
+	private String area;
+	private String type;
+	
+	
+
+}

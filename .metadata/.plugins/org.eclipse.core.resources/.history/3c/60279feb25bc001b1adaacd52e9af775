@@ -1,0 +1,7 @@
+package com.holler.planflow.models;
+
+@Entity
+@Table(name="locs")
+public class Loc {
+		
+}

@@ -1,0 +1,11 @@
+package com.holler.planflow.models;
+
+import java.io.Serializable;
+
+public class LocId implements Serializable {
+	private String rownum;
+	private String xcoor;
+	private String ycoor;
+}
+
+public LocId(String rownum, String xcoor, String ycoor)

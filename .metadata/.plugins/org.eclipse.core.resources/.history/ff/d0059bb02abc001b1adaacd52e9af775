@@ -1,0 +1,33 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="storagetypes")
+public class StorageType {
+	private Integer storcap;
+
+	@Id
+	@OneToMany(
+	mappedBy="stortype",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	
+	private List<Area> areas;
+	
+	public StorageType {
+		
+	}
+	
+	public StorageType {
+		
+	}
+
+}
