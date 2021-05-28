@@ -1,0 +1,73 @@
+package com.holler.planflow.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(LocId.class)
+@Table(name="locs")
+public class Loc {
+	@Id
+	@JoinColumns({
+		@JoinColumn(name="row"),
+		@JoinColumn(name="xcoor"),
+		@JoinColumn(name="ycoor"),
+	})
+	private LocId loc;
+	
+	private String row;
+	
+	private String xcoor;
+	
+	private String ycoor;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="area")
+    private Area area;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="loctype")
+	private Loctype loctype;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="velocity")
+	private Velocity velocity;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="status")
+	private Locstat locstat;
+	
+	@OneToOne(
+	mappedBy="loc",
+	cascade=CascadeType.ALL,
+	fetch=FetchType.LAZY)
+    private Pallet pallet;
+    	
+	public Loc() {
+		}
+
+	public Loc(LocId loc, String row, String xcoor, String ycoor, Area area, Loctype loctype, Velocity velocity,
+			Locstat locstat, Pallet pallet) {
+		this.loc = loc;
+		this.row = row;
+		this.xcoor = xcoor;
+		this.ycoor = ycoor;
+		this.area = area;
+		this.loctype = loctype;
+		this.velocity = velocity;
+		this.locstat = locstat;
+		this.pallet = pallet;
+	}
+
+	
+	
+
+}

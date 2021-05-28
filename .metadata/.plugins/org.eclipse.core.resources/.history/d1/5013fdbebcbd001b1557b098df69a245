@@ -1,0 +1,66 @@
+package com.holler.planflow.models;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Entity
+@IdClass(PalletId.class)
+@Table(name="pallets")
+public class Pallet {
+	@Id
+	@JoinColumns({
+		@JoinColumn(name="pid"),
+		@JoinColumn(name="recdate"),
+		@JoinColumn(name="batch")
+	})
+	private PalletId palletid;
+	
+	@Value("PID")
+	private String pid;
+	
+	@DateTimeFormat(pattern="YYMMDD")
+	private Date recdate;
+	
+	private String batch;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="palstat")
+    private Palletstat palstat;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="ptype")
+	private Pallettype ptype;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="loc")
+    private Loc loc;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="dock")
+    private Dock dock;
+
+	public Pallet() {
+		
+	}
+
+	
+	
+	
+	
+}

@@ -1,0 +1,26 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="conslines")
+public class Consignmentline {
+	@Id
+	private String consline;
+	private Integer qty;
+	private Integer vol;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="consignment")
+    private Consignment consid;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+
+}

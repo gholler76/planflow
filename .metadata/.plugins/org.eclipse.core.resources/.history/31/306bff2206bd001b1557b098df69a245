@@ -1,0 +1,31 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(QueueId.class)
+@Table(name="queues")
+public class Movequeue {
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="movetype")
+    private Movetype movetype;
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fromgroup")
+	private Group fromgroup;
+	@Id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="togroup")
+	private Group togroup;
+	
+	private String descrip;
+	
+	
+}

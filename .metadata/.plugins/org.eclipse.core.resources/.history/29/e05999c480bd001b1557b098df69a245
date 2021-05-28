@@ -1,0 +1,69 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="orders")
+public class Order {
+	@Id
+	private String orderno;
+	private Integer qty;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stono")
+    private Store stono;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+
+	public Order() {
+		
+	}
+
+	public Order(String ordno, Integer qty, Store stono, Product prodno) {
+		this.orderno = ordno;
+		this.qty = qty;
+		this.stono = stono;
+		this.prodno = prodno;
+	}
+
+	public String getOrderno() {
+		return orderno;
+	}
+
+	public void setOrderno(String orderno) {
+		this.orderno = orderno;
+	}
+
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
+	}
+
+	public Store getStono() {
+		return stono;
+	}
+
+	public void setStono(Store stono) {
+		this.stono = stono;
+	}
+
+	public Product getProdno() {
+		return prodno;
+	}
+
+	public void setProdno(Product prodno) {
+		this.prodno = prodno;
+	}
+	
+	
+}

@@ -1,0 +1,33 @@
+package com.holler.planflow.models;
+
+import java.io.Serializable;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+
+public class QueueId implements Serializable {
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="movetype")
+    private Movetype movetype;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="fromgroup")
+	private Group fromgroup;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="togroup")
+	private Group togroup;
+
+	public QueueId() {
+		
+	}
+
+	public QueueId(Movetype movetype, Group fromgroup, Group togroup ) {
+		this.movetype = movetype;
+		this.fromgroup = fromgroup;
+		this.togroup = togroup;
+	}
+}

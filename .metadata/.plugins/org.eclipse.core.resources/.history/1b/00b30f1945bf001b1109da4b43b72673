@@ -1,0 +1,18 @@
+package com.holler.planflow.repos;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.holler.planflow.models.Pallet;
+
+@Repository
+public interface PalletRepo extends CrudRepository<Pallet, Long>{
+
+	@Query(value="
+			+ 'SELECT column_name'
+			+ 'FROM table_name\r\n'
+			+ 'ORDER BY RAND()  \r\n'
+			+ 'LIMIT 3;'")
+	
+	
+    }

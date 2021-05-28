@@ -1,0 +1,17 @@
+package com.holler.planflow.repos;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.holler.planflow.models.Pallet;
+
+@Repository
+public interface PalletRepo extends CrudRepository<Pallet, Long>{
+
+	@Query(value="Select palletid from pallet order by rand() limit 1", nativeQuery=true)
+	Pallet findRandomPalletId();
+	
+}

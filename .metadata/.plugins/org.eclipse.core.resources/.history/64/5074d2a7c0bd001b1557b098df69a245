@@ -1,0 +1,56 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="unloadseqs")
+public class Unloadseq {
+	@Id
+	private String cycle;
+	private Integer seqno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="unloadqueue")
+    private Movequeue unloadqueue;	
+	
+	public Unloadseq() {
+		
+	}
+
+	public Unloadseq(String cycle, Integer seqno, Movequeue unloadqueue) {
+		this.cycle = cycle;
+		this.seqno = seqno;
+		this.unloadqueue = unloadqueue;
+	}
+
+	public String getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(String cycle) {
+		this.cycle = cycle;
+	}
+
+	public Integer getSeqno() {
+		return seqno;
+	}
+
+	public void setSeqno(Integer seqno) {
+		this.seqno = seqno;
+	}
+
+	public Movequeue getUnloadqueue() {
+		return unloadqueue;
+	}
+
+	public void setUnloadqueue(Movequeue unloadqueue) {
+		this.unloadqueue = unloadqueue;
+	}
+	
+	
+}

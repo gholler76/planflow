@@ -1,0 +1,57 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="areas")
+public class Area {
+	@Id
+	private String area;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="cell")
+    private Cell cell;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Storagetype stortype;
+
+	public Area() {
+	}
+
+	public Area(String area, Cell cell, Storagetype stortype) {
+		this.area = area;
+		this.cell = cell;
+		this.stortype = stortype;
+	}
+
+	public String getArea() {
+		return area;
+	}
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+	public Cell getcell() {
+		return cell;
+	}
+
+	public void setcell(Cell cell) {
+		this.cell = cell;
+	}
+
+	public Storagetype getStortype() {
+		return stortype;
+	}
+
+	public void setStortype(Storagetype stortype) {
+		this.stortype = stortype;
+	}
+
+}

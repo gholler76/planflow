@@ -1,0 +1,109 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(PalletId.class)
+@Table(name="pallets")
+public class Pallet {
+	@Id
+	@JoinColumns({
+		@JoinColumn(name="pid"),
+		@JoinColumn(name="recdate"),
+		@JoinColumn(name="batch")
+	})
+	private PalletId palletid;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="palstat")
+    private Palletstat palstat;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="ptype")
+	private Pallettype ptype;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="loc")
+    private Loc loc;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="dock")
+    private Dock dock;
+
+	public Pallet() {
+		
+	}
+
+	public Pallet(String palletid, Palletstat palstat, Product prodno, Pallettype ptype, Loc loc, Dock dock) {
+		this.palletid = palletid;
+		this.palstat = palstat;
+		this.prodno = prodno;
+		this.ptype = ptype;
+		this.loc = loc;
+		this.dock = dock;
+	}
+
+	public String getPalletid() {
+		return palletid;
+	}
+
+	public void setPalletid(String palletid) {
+		this.palletid = palletid;
+	}
+
+	public Palletstat getPalstat() {
+		return palstat;
+	}
+
+	public void setPalstat(Palletstat palstat) {
+		this.palstat = palstat;
+	}
+
+	public Product getProdno() {
+		return prodno;
+	}
+
+	public void setProdno(Product prodno) {
+		this.prodno = prodno;
+	}
+
+	public Pallettype getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(Pallettype ptype) {
+		this.ptype = ptype;
+	}
+
+	public Loc getLoc() {
+		return loc;
+	}
+
+	public void setLoc(Loc loc) {
+		this.loc = loc;
+	}
+
+	public Dock getDock() {
+		return dock;
+	}
+
+	public void setDock(Dock dock) {
+		this.dock = dock;
+	}
+	
+	
+	
+	
+}

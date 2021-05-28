@@ -1,0 +1,92 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="groups")
+public class Group {
+	@Id 
+	private String group;
+	private String descrip;
+
+	@OneToMany(
+	mappedBy="group",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Area> areas;
+	
+	@OneToMany(
+	mappedBy="group",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Dock> docks;
+
+	public Group() {
+		
+	}
+	
+	public Group (String group, String descrip) {
+		this.group = group;
+		this.descrip = descrip;
+	}
+	
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
+	}
+
+	public List<Area> getAreas() {
+		return areas;
+	}
+
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
+	}
+
+	public List<Dock> getDocks() {
+		return docks;
+	}
+
+	public void setDocks(List<Dock> docks) {
+		this.docks = docks;
+	}
+
+	public String getDescrip() {
+		return descrip;
+	}
+
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+
+	public List<Group> getFromgroups() {
+		return fromgroups;
+	}
+
+	public void setFromgroups(List<Group> fromgroups) {
+		this.fromgroups = fromgroups;
+	}
+
+	public List<Group> getTogroups() {
+		return togroups;
+	}
+
+	public void setTogroups(List<Group> togroups) {
+		this.togroups = togroups;
+	}
+	
+	
+	
+}
+

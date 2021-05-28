@@ -1,0 +1,8 @@
+package com.holler.planflow.models;
+
+public class PalletId {
+  static long current= System.currentTimeMillis();
+  static public synchronized long get(){
+  return current++;
+  }
+}

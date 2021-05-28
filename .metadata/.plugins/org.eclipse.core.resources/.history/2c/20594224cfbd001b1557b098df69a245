@@ -1,0 +1,79 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="conslines")
+public class Consignmentline {
+	@Id
+	private String consline;
+	private Integer qty;
+	private Float vol;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="consignment")
+    private Consignment consignment;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+
+	public Consignmentline() {
+		
+	}
+
+	public Consignmentline(String consline, Integer qty, Float vol, Consignment consignment, Product prodno) {
+		this.consline = consline;
+		this.qty = qty;
+		this.vol = vol;
+		this.consignment = consignment;
+		this.prodno = prodno;
+	}
+
+	public String getConsline() {
+		return consline;
+	}
+
+	public void setConsline(String consline) {
+		this.consline = consline;
+	}
+
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
+	}
+
+	public Float getVol() {
+		return vol;
+	}
+
+	public void setVol(Float vol) {
+		this.vol = vol;
+	}
+
+	public Consignment getConsid() {
+		return consignment;
+	}
+
+	public void setConsid(Consignment consignment) {
+		this.consignment= consignment;
+	}
+
+	public Product getProdno() {
+		return prodno;
+	}
+
+	public void setProdno(Product prodno) {
+		this.prodno = prodno;
+	}
+	
+	
+}

@@ -1,0 +1,91 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="gates")
+public class Dock {
+	@Id
+	private String dock;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Storagetype stortype;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="group")
+	private Cell group;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="logstat")
+	private Logstat logstat;
+	
+	@OneToMany(
+	mappedBy="dock",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+	
+	public Dock () {
+		
+	}
+
+	public Dock(String dock, Storagetype stortype, Cell group, Logstat logstat) {
+		this.dock = dock;
+		this.stortype = stortype;
+		this.group = group;
+		this.logstat = logstat;
+	}
+
+	public String getDock() {
+		return dock;
+	}
+
+	public void setDock(String dock) {
+		this.dock = dock;
+	}
+
+	public Storagetype getStortype() {
+		return stortype;
+	}
+
+	public void setStortype(Storagetype stortype) {
+		this.stortype = stortype;
+	}
+
+	public Cell getGroup() {
+		return group;
+	}
+
+	public void setGroup(Cell group) {
+		this.group = group;
+	}
+
+	public Logstat getLogstat() {
+		return logstat;
+	}
+
+	public void setLogstat(Logstat logstat) {
+		this.logstat = logstat;
+	}
+
+	public List<Pallet> getPallets() {
+		return pallets;
+	}
+
+	public void setPallets(List<Pallet> pallets) {
+		this.pallets = pallets;
+	}
+	
+		
+	
+}

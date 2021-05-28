@@ -1,0 +1,27 @@
+package com.holler.planflow.models;
+
+@Entity
+@Table(name="palletypes")
+public class Pallettype {
+	@Id
+	private String ptype;
+	private String widfrom;
+	private String widto;
+	
+	@OneToMany(
+	mappedBy="ptype",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+
+	public Pallettype () {
+		
+	}
+	
+	public Pallettype (String ptype, String widfrom, ) {
+		
+	}
+	
+	
+}
+

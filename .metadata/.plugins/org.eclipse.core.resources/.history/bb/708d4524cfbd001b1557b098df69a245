@@ -1,0 +1,90 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="gates")
+public class Dock {
+	@Id
+	private String dock;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Storagetype stortype;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="cell")
+	private Cell cell;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="logstat")
+	private Logstat logstat;
+	
+	@OneToMany(
+	mappedBy="dock",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+	
+	public Dock () {
+		
+	}
+
+	public Dock(String dock, Storagetype stortype, Cell cell, Logstat logstat) {
+		this.dock = dock;
+		this.stortype = stortype;
+		this.cell = cell;
+		this.logstat = logstat;
+	}
+
+	public String getDock() {
+		return dock;
+	}
+
+	public void setDock(String dock) {
+		this.dock = dock;
+	}
+
+	public Storagetype getStortype() {
+		return stortype;
+	}
+
+	public void setStortype(Storagetype stortype) {
+		this.stortype = stortype;
+	}
+
+	public Cell getCell() {
+		return cell;
+	}
+
+	public void setCell(Cell cell) {
+		this.cell = cell;
+	}
+
+	public Logstat getLogstat() {
+		return logstat;
+	}
+
+	public void setLogstat(Logstat logstat) {
+		this.logstat = logstat;
+	}
+
+	public List<Pallet> getPallets() {
+		return pallets;
+	}
+
+	public void setPallets(List<Pallet> pallets) {
+		this.pallets = pallets;
+	}
+
+	
+}

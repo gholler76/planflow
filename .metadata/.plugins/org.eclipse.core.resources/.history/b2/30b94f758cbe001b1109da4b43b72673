@@ -1,0 +1,29 @@
+package com.holler.planflow.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.holler.planflow.models.Location;
+import com.holler.planflow.repos.LocationRepo;
+
+@Service
+public class LocationService {
+	 private final LocationRepo locationRepo;
+	    
+	    public LocationService(LocationRepo locationRepo) {
+	        this.locationRepo = locationRepo;
+	    }
+	    
+	    public Location generateLocation() {
+	        Location l = new Location();
+	        return locationRepo.save(l);
+	        
+	    }
+	    
+	    public List<Location> getAllLocations() {
+			return (List<Location>) locationRepo.findAll();
+		}
+	    
+	    
+}

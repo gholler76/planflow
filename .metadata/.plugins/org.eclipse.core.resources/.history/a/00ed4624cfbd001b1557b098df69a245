@@ -1,0 +1,25 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="movetypes")
+public class Movetype {
+	@Id
+	private String movetype;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="movetype",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Movequeue> queues;
+
+}

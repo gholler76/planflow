@@ -1,0 +1,11 @@
+package com.holler.planflow.controllers;
+
+import org.springframework.stereotype.Controller;
+
+import com.holler.planflow.services.LocationService;
+
+@Controller
+public class LocationController {
+	private final LocationService locationService (
+			)
+}

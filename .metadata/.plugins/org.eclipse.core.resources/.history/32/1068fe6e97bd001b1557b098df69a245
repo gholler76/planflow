@@ -1,0 +1,19 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="consignments")
+public class Consignment {
+	@Id
+	private String consid;
+	private Float consvol;
+	
+	@OneToMany(
+	mappedBy="consignment",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	
+	private List<Consignmentline> conslines;
+}

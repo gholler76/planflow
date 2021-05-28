@@ -1,0 +1,60 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="locstats")
+public class Dockstat {
+	@Id
+	private String dockstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="locstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Dock> docks;
+	
+
+	public Locstat() {
+		
+	}
+	
+	public Locstat(String dockstat, String descrip) {
+		this.dockstat = dockstat;
+		this.descrip = descrip;
+	}
+
+	public String getDockstat() {
+		return dockstat;
+	}
+
+	public void setDockstat(String dockstat) {
+		this.dockstat = dockstat;
+	}
+
+	public String getDescrip() {
+		return descrip;
+	}
+
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+
+	public List<Dock> getDocks() {
+		return docks;
+	}
+
+	public void setDocks(List<Dock> docks) {
+		this.docks = docks;
+	}
+
+	
+}

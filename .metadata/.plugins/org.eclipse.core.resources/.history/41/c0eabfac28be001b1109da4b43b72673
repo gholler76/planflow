@@ -1,0 +1,45 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Value;
+
+@Entity
+@Table(name="pallets")
+public class Pallet {
+	@Id
+	private Long id;
+	
+	@Value("PA")
+	private String ptype;
+	
+	public Pallet() {
+		
+	}
+	
+	public Pallet(Long id, String ptype) {
+		this.id = id;
+		this.ptype = ptype;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(String ptype) {
+		this.ptype = ptype;
+	}
+
+	
+}

@@ -1,0 +1,74 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="velocity")
+public class Velocity {
+	@Id
+	private String velocity;
+	private Integer rate;
+	
+	@OneToMany(
+	mappedBy="velocity",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Loc> locs;
+
+	@OneToOne(
+	mappedBy="velocity",
+	cascade=CascadeType.ALL,
+	fetch=FetchType.LAZY)
+    private Veldef veldefs;
+    
+	public Velocity () {
+		
+	}
+
+	public Velocity (String velocity, Integer rate) {
+		this.velocity = velocity;
+		this.rate = rate;
+	}
+
+	public String getVelocity() {
+		return velocity;
+	}
+
+	public void setVelocity(String velocity) {
+		this.velocity = velocity;
+	}
+
+	public Integer getRate() {
+		return rate;
+	}
+
+	public void setRate(Integer rate) {
+		this.rate = rate;
+	}
+
+	public List<Loc> getLocs() {
+		return locs;
+	}
+
+	public void setLocs(List<Loc> locs) {
+		this.locs = locs;
+	}
+
+	public Veldef getVeldefs() {
+		return veldefs;
+	}
+
+	public void setVeldefs(Veldef veldefs) {
+		this.veldefs = veldefs;
+	}
+	
+	
+}

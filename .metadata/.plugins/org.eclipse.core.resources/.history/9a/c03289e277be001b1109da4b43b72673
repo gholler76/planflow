@@ -1,0 +1,90 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Location {
+	@Id
+	@GeneratedValue
+	private Long locid;
+	
+	@Column(name="row", length=3, nullable=false, insertable=false, updatable=false)	
+	private String row;
+
+	@Column(name="xcoor", length=3, nullable=false, insertable=false, updatable=false)
+	private String xcoor;
+	
+	@Column(name="ycoor", length=3, nullable=false, insertable=false, updatable=false)
+	private String ycoor;
+	
+	@JoinColumns({
+		@JoinColumn(name="row"),
+		@JoinColumn(name="xcoor"),
+		@JoinColumn(name="ycoor"),
+	})
+	private String loc;
+	
+	public Location() {
+		
+	}
+	
+	public Location(
+		String row,
+		String xcoor,
+		String ycoor
+			) {
+		this.row = row;
+		this.xcoor = xcoor;
+		this.ycoor = ycoor;
+	}
+
+	public Long getLocid() {
+		return locid;
+	}
+
+	public void setLocid(Long locid) {
+		this.locid = locid;
+	}
+
+	public String getRow() {
+		return row;
+	}
+
+	public void setRow(String row) {
+		this.row = row;
+	}
+
+	public String getXcoor() {
+		return xcoor;
+	}
+
+	public void setXcoor(String xcoor) {
+		this.xcoor = xcoor;
+	}
+
+	public String getYcoor() {
+		return ycoor;
+	}
+
+	public void setYcoor(String ycoor) {
+		this.ycoor = ycoor;
+	}
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+	
+	
+	
+}

@@ -1,0 +1,28 @@
+package com.holler.planflow.models;
+
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.Parent;
+
+@Entity
+@Table(name="shipments")
+public class Shipment {
+	@Id
+	private String shipid;
+	private Integer shipvol;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="unitid")
+    private Transportunit unitid;
+   
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="orderline")
+    private Orderline orderlines;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="store")
+    private Store stono;
+	
+}

@@ -1,0 +1,58 @@
+package com.holler.planflow.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.holler.planflow.services.LocationService;
+import com.holler.planflow.services.PalletService;
+
+@Controller
+public class MainController {
+	private final PalletService palletService;
+	private final LocationService locationService;
+ 
+	public MainController(
+			PalletService palletService,
+			LocationService locationService
+			) {
+		this.palletService = palletService;
+		this.locationService = locationService;
+	}
+
+	// home test screen
+	@GetMapping("/")
+	public String home(Model model) {
+		model.addAttribute("pallets", palletService.getAllPallets());
+		return "home.jsp";
+	}
+	
+	// basic redirect for creation posts
+	@GetMapping("/success")
+	public String success() {
+		return "redirect:/";
+	}
+	
+	// pallet generator	
+	@PostMapping("/pallets")
+	public String makePallets(
+			@RequestParam(value="qty")Integer qty) {
+		for (Integer p = 1; p<=qty; p++) {
+				Long palletid = System.currentTimeMillis();			
+				palletService.generatePallet(palletid);
+		}
+		return "redirect:/success";
+	}
+
+	// location generator	
+	@PostMapping("/locations")
+	public String makeLocations() {
+		
+		
+		return "redirect:/success";
+	}
+	
+	}

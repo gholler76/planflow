@@ -1,0 +1,76 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="cells")
+public class Cell {
+	@Id 
+	private String cell;
+	private String descrip;
+
+	@OneToMany(
+	mappedBy="cell",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Area> areas;
+	
+	@OneToMany(
+	mappedBy="cell",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Dock> docks;
+
+	public Cell() {
+		
+	}
+	
+	public Cell (String cell, String descrip) {
+		this.cell = cell;
+		this.descrip = descrip;
+	}
+	
+
+	public String getCell() {
+		return cell;
+	}
+
+	public void setCell(String cell) {
+		this.cell = cell;
+	}
+
+	public List<Area> getAreas() {
+		return areas;
+	}
+
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
+	}
+
+	public List<Dock> getDocks() {
+		return docks;
+	}
+
+	public void setDocks(List<Dock> docks) {
+		this.docks = docks;
+	}
+
+	public String getDescrip() {
+		return descrip;
+	}
+
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+
+
+	
+}
+

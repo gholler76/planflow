@@ -1,0 +1,38 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="palletypes")
+public class Pallettype {
+	@Id
+	private String ptype;
+	private String widfrom;
+	private String widto;
+	
+	@OneToMany(
+	mappedBy="ptype",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+
+	public Pallettype () {
+		
+	}
+	
+	public Pallettype (String ptype, String widfrom, String widto) {
+		this.ptype = ptype;
+		this.widfrom = widfrom;
+		this.widto = widto;
+	}
+	
+	
+}
+

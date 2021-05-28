@@ -1,0 +1,74 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Location {
+	@Id
+	@GeneratedValue
+	private Long locid;
+	
+	@Column(name="rack", length=3, nullable=false, insertable=false, updatable=false)	
+	private String rack;
+
+	@Column(name="xcoor", length=3, nullable=false, insertable=false, updatable=false)
+	private String xcoor;
+	
+	@Column(name="ycoor", length=3, nullable=false, insertable=false, updatable=false)
+	private String ycoor;
+	
+	public Location() {
+		
+	}
+	
+	public Location(
+		String rack,
+		String xcoor,
+		String ycoor
+			) {
+		this.rack = rack;
+		this.xcoor = xcoor;
+		this.ycoor = ycoor;
+	}
+
+	public Long getLocid() {
+		return locid;
+	}
+
+	public void setLocid(Long locid) {
+		this.locid = locid;
+	}
+
+	public String getRack() {
+		return rack;
+	}
+
+	public void setRack(String rack) {
+		this.rack = rack;
+	}
+
+	public String getXcoor() {
+		return xcoor;
+	}
+
+	public void setXcoor(String xcoor) {
+		this.xcoor = xcoor;
+	}
+
+	public String getYcoor() {
+		return ycoor;
+	}
+
+	public void setYcoor(String ycoor) {
+		this.ycoor = ycoor;
+	}
+
+
+	
+	
+}

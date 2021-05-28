@@ -1,0 +1,85 @@
+package com.holler.planflow.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="loctypes")
+public class Loctype {
+	@Id
+	private String loctype;
+	private Integer widfrom;
+	private Integer widto;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Storagetype storagetype;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="locdef")
+    private Locdef locdef;
+	    
+	public Loctype () {
+	}
+
+	public Loctype (
+			String loctype,
+			Integer widfrom,
+			Integer widto,
+			Storagetype storagetype) {
+		this.loctype = loctype;
+		this.widfrom = widfrom;
+		this.widto = widto;
+		this.storagetype = storagetype;
+	}
+
+	public String getLoctype() {
+		return loctype;
+	}
+
+	public void setLoctype(String loctype) {
+		this.loctype = loctype;
+	}
+
+	public Integer getWidfrom() {
+		return widfrom;
+	}
+
+	public void setWidfrom(Integer widfrom) {
+		this.widfrom = widfrom;
+	}
+
+	public Integer getWidto() {
+		return widto;
+	}
+
+	public void setWidto(Integer widto) {
+		this.widto = widto;
+	}
+
+	public Storagetype getStoragetype() {
+		return storagetype;
+	}
+
+	public void setStoragetype(Storagetype storagetype) {
+		this.storagetype = storagetype;
+	}
+
+	public Locdef getLocdef() {
+		return locdef;
+	}
+
+	public void setLocdef(Locdef locdef) {
+		this.locdef = locdef;
+	}
+	
+	
+	
+
+}

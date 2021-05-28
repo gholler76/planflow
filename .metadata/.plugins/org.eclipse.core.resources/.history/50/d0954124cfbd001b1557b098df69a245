@@ -1,0 +1,59 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="unitstats")
+public class Unitstat {
+	@Id
+	private String unitstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="unitstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Transportunit> unitids;
+	
+	public Unitstat() {
+		
+	}
+	
+	public Unitstat(String unitstat, String descrip) {
+		this.unitstat = unitstat;
+		this.descrip = descrip;
+	}
+
+	public String getUnitstat() {
+		return unitstat;
+	}
+
+	public void setUnitstat(String unitstat) {
+		this.unitstat = unitstat;
+	}
+
+	public String getDescrip() {
+		return descrip;
+	}
+
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+
+	public List<Transportunit> getUnitids() {
+		return unitids;
+	}
+
+	public void setUnitids(List<Transportunit> unitids) {
+		this.unitids = unitids;
+	}
+
+	
+}

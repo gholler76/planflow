@@ -1,0 +1,69 @@
+package com.holler.planflow.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="locdefs")
+public class Locdef {
+	@Id
+	private String ptypepri;
+
+	private String ptypesec;
+
+	@OneToOne(
+		mappedBy="locdef",
+		cascade=CascadeType.ALL,
+		fetch=FetchType.LAZY)
+	private Loctype loctype;
+	
+	
+	public Locdef() {
+	}
+
+
+	public Locdef(String ptypepri, String ptypesec, Loctype loctype) {
+		super();
+		this.ptypepri = ptypepri;
+		this.ptypesec = ptypesec;
+		this.loctype = loctype;
+	}
+
+
+	public String getPtypepri() {
+		return ptypepri;
+	}
+
+
+	public void setPtypepri(String ptypepri) {
+		this.ptypepri = ptypepri;
+	}
+
+
+	public String getPtypesec() {
+		return ptypesec;
+	}
+
+
+	public void setPtypesec(String ptypesec) {
+		this.ptypesec = ptypesec;
+	}
+
+
+	public Loctype getLoctype() {
+		return loctype;
+	}
+
+
+	public void setLoctype(Loctype loctype) {
+		this.loctype = loctype;
+	}
+	
+
+
+}

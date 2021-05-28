@@ -1,0 +1,37 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="storstats")
+public class Logstat {
+	@Id
+	private String logstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="logstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Loc> locs;
+	
+	@OneToMany(
+	mappedBy="logstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Dock> docks;
+	
+
+	public Logstat() {
+		
+	}
+
+
+}

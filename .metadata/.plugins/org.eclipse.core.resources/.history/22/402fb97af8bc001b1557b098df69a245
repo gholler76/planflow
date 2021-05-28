@@ -1,0 +1,17 @@
+package com.holler.planflow.models;
+
+import java.io.Serializable;
+
+public class PalletId implements Serializable {
+	private String row;
+	private String xcoor;
+	private String ycoor;
+
+	public LocId() {
+	}
+
+	public LocId(String row, String xcoor, String ycoor) {
+		this.row = row;
+		this.xcoor = xcoor;
+		this.ycoor = ycoor;
+	}

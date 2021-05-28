@@ -1,0 +1,41 @@
+package com.holler.planflow.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.holler.planflow.models.Location;
+import com.holler.planflow.repos.LocationRepo;
+
+@Service
+public class LocationService {
+	 private final LocationRepo locationRepo;
+	    
+	    public LocationService(LocationRepo locationRepo) {
+	        this.locationRepo = locationRepo;
+	    }
+	    
+	    public String generateLocation(
+	    		Integer startRack,
+	    		Integer rackCount,
+	    		Integer xcoors,
+	    		Integer ycoors
+	    		) {
+	    	String rack = "";
+	    	String xcoor = "";
+	    	String ycoor = "";
+	    	for (Integer x=1; x<=rackCount; x++) {
+	    		rack = toString(startRack);
+	    		
+	    	}
+	    	
+	        return "Locations created";
+	        
+	    }
+	    
+	    public List<Location> getAllLocations() {
+			return (List<Location>) locationRepo.findAll();
+		}
+	    
+	    
+}

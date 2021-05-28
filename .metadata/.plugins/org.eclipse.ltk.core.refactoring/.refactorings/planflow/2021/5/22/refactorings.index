@@ -7,3 +7,18 @@
 1621820735630	Rename type 'StorageType'
 1621820752979	Rename type 'LocDef'
 1621821095389	Rename compilation unit 'Locstatus.java'
+1621966335535	Delete element
+1621971792706	Rename type 'Transportunits'
+1621993041879	Rename compilation unit 'Locstat.java'
+1621993117891	Delete element
+1621997586089	Rename type 'Group'
+1621998293016	Delete elements
+1621999578143	Rename package 'com.holler.planflow.generators'
+1622000890783	Rename package 'PalletRoutes'
+1622032032828	Delete element
+1622034368083	Copy file
+1622058452658	Delete element
+1622059732484	Delete element
+1622061896394	Delete element
+1622061917891	Rename type 'PalletController'
+1622075972912	Rename resource 'Success.jsp'

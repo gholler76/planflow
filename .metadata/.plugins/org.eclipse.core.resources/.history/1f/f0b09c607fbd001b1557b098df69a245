@@ -1,0 +1,17 @@
+package com.holler.planflow.models;
+
+@Entity
+@Table(name="palstats")
+public class Palletstat {
+	@Id
+	private String palstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="palstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	
+	private List<Pallet> pallets;
+	
+}

@@ -1,0 +1,45 @@
+package com.holler.planflow.services;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.holler.planflow.models.Pallet;
+import com.holler.planflow.repos.PalletRepo;
+
+@Service
+public class PalletService {
+    private final PalletRepo palletRepo;
+    
+    public PalletService(PalletRepo palletRepo) {
+        this.palletRepo = palletRepo;
+    }
+    
+    public String generatePallet(Integer qty) {
+    	for (Integer i = 1; i<=qty; i++) {
+    		Pallet p = new Pallet();
+			Long palletid = System.currentTimeMillis();			
+			p.setPalletid(palletid);
+			p.setPtype("PA");
+			palletRepo.save(p);
+    	}
+        return "Pallets created";
+        
+    }
+    
+    public List<Pallet> getAllPallets() {
+		return (List<Pallet>) palletRepo.findAll();
+	}
+    
+    public void deleteAllPallets() { 
+    	palletRepo.deleteAll();
+    }
+    	    
+    public String storePallets() {
+    	palletRepo.findRandomPallet();
+    	return ;
+    }
+    
+}
+
+

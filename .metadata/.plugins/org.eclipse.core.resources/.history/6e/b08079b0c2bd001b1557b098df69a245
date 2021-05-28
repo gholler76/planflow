@@ -1,0 +1,90 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="gates")
+public class Dock {
+	@Id
+	private String dock;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="stortype")
+    private Storagetype storagetype;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="group")
+	private Group group;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="logstat")
+	private Logstat logstat;
+	
+	@OneToMany(
+	mappedBy="dock",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+	
+	public Dock () {
+		
+	}
+	
+	public Dock (String dock, Storagetype storagetype, Group group, Dockstat dockstat) {
+		this.dock = dock;
+		this.storagetype = storagetype;
+		this.group = group;
+		this.dockstat = dockstat;
+	}
+
+	public String getDock() {
+		return dock;
+	}
+
+	public void setDock(String dock) {
+		this.dock = dock;
+	}
+
+	public Storagetype getStoragetype() {
+		return storagetype;
+	}
+
+	public void setStoragetype(Storagetype storagetype) {
+		this.storagetype = storagetype;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public Dockstat getDockstat() {
+		return dockstat;
+	}
+
+	public void setDockstat(Dockstat dockstat) {
+		this.dockstat = dockstat;
+	}
+
+	public List<Pallet> getPallets() {
+		return pallets;
+	}
+
+	public void setPallets(List<Pallet> pallets) {
+		this.pallets = pallets;
+	}
+	
+	
+}

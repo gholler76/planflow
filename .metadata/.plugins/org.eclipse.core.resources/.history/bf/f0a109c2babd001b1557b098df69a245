@@ -1,0 +1,126 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(QueueId.class)
+@Table(name="queues")
+public class Movequeue {
+	@Id
+    @JoinColumns({
+    	@JoinColumn(name="movetype"),
+    	@JoinColumn(name="fromgroup"),
+		@JoinColumn(name="togroup")
+    })
+	private QueueId movequeue;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="fromgroup")
+    private Group fromgroup;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="togroup")
+	private Group togroup;
+	
+   	@OneToMany(
+	mappedBy="pickqueue",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pickseq> pickseqs;
+	
+	@OneToMany(
+	mappedBy="putqueue",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Putseq> putseqs;
+	
+	@OneToMany(
+	mappedBy="unloadqueue",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Unloadseq> unloadseqs;
+	
+	@OneToMany(
+	mappedBy="loadqueue",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Loadseq> loadseqs;
+	
+	public Movequeue() {
+		
+	}
+	
+	public Movequeue(QueueId movequeue, String descrip) {
+		this.movequeue = movequeue;
+		this.descrip = descrip;
+	}
+
+	public QueueId getMovequeue() {
+		return movequeue;
+	}
+
+	public void setMovequeue(QueueId movequeue) {
+		this.movequeue = movequeue;
+	}
+
+	public Group getTogroup() {
+		return togroup;
+	}
+
+	public void setTogroup(Group togroup) {
+		this.togroup = togroup;
+	}
+
+	public String getDescrip() {
+		return descrip;
+	}
+
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+
+	public List<Pickseq> getPickseqs() {
+		return pickseqs;
+	}
+
+	public void setPickseqs(List<Pickseq> pickseqs) {
+		this.pickseqs = pickseqs;
+	}
+
+	public List<Putseq> getPutseqs() {
+		return putseqs;
+	}
+
+	public void setPutseqs(List<Putseq> putseqs) {
+		this.putseqs = putseqs;
+	}
+
+	public List<Unloadseq> getUnloadseqs() {
+		return unloadseqs;
+	}
+
+	public void setUnloadseqs(List<Unloadseq> unloadseqs) {
+		this.unloadseqs = unloadseqs;
+	}
+
+	public List<Loadseq> getLoadseqs() {
+		return loadseqs;
+	}
+
+	public void setLoadseqs(List<Loadseq> loadseqs) {
+		this.loadseqs = loadseqs;
+	}
+
+	
+}

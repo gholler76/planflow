@@ -1,0 +1,37 @@
+package com.holler.planflow.controllers;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.holler.planflow.services.PalletService;
+
+@Controller
+public class PalletController {
+	private final PalletService palletService;
+ 
+	public PalletController(PalletService palletService) {
+		this.palletService = palletService;
+	}
+
+	@GetMapping("/")
+	public String home() {
+		return "home.jsp";
+	}
+		
+	@PostMapping("/")
+	public String generatePallets(
+			@RequestParam(value="qty")Integer qty,
+			RedirectAttributes redirect
+			) {
+		for (Integer p = 1; p<=qty; p++) {
+				Long palletid = System.currentTimeMillis();			
+				palletService.generatePallet(palletid);
+		}
+		redirect.addFlashAttribute("pallets", qty);
+		return "redirect:/";
+	}
+	
+	}

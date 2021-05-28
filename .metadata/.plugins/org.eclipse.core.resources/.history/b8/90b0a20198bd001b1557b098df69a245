@@ -1,0 +1,43 @@
+package com.holler.planflow.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Parent;
+
+@Entity
+@Table(name="transportunits")
+public class Transportunit {
+	@Id
+	private String unitid;
+	private Integer maxvol;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="unitstat")
+    private Unitstat unitstat;
+	
+	@OneToOne(
+	mappedBy="unitid",
+	cascade=CascadeType.ALL,
+	fetch=FetchType.LAZY)
+    private Shipment shipid;
+    
+	public Transportunit() {
+		
+	}
+
+	public Transportunit(String unitid, INteger maxvol, Unitstat unitstat, Sipment shipid) {
+		this.unitid = unitid;
+		this.maxvol = maxvol;
+		this.shipid = shipid;
+		this.unitstat = unitstat;
+	}
+	
+	
+}

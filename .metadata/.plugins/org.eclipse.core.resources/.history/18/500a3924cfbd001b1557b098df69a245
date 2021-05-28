@@ -1,0 +1,53 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="palstats")
+public class Palletstat {
+	@Id
+	private String palstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="palstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+	
+	public Palletstat() {
+		
+	}
+	public Palletstat(String palstat, String descrip) {
+		
+	}
+	public String getPalstat() {
+		return palstat;
+	}
+	public void setPalstat(String palstat) {
+		this.palstat = palstat;
+	}
+	public String getDescrip() {
+		return descrip;
+	}
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+	public List<Pallet> getPallets() {
+		return pallets;
+	}
+	public void setPallets(List<Pallet> pallets) {
+		this.pallets = pallets;
+	}
+	
+	
+
+
+}

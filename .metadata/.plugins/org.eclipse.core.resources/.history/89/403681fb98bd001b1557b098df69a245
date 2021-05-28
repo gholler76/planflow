@@ -1,0 +1,31 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="unitstats")
+public class Unitstat {
+	@Id
+	private String unitstat;
+	private String descrip;
+	
+	@OneToMany(
+	mappedBy="unitstat",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Shipment> shipments;
+	
+	@OneToMany(
+			mappedBy="unitstat",
+			fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
+	private List<Shipment> shipments;
+	
+}

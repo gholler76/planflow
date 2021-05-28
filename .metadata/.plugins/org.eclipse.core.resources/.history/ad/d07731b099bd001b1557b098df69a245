@@ -1,0 +1,48 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="shipments")
+public class Shipment {
+	@Id
+	private String shipid;
+	private Integer shipvol;
+	   
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="orderline")
+    private Orderline orderlines;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="store")
+    private Store stono;
+	
+	@OneToMany(
+	mappedBy="shipment",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Pallet> pallets;
+	
+	public Shipment() {
+		
+	}
+
+	public Shipment(String shipid, Integer shipvol, Transportunit unitid, Orderline orderlines, Store stono) {
+		this.shipid = shipid;
+		this.shipvol  = shipvol;
+		
+	}
+
+
+
+}

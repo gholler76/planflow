@@ -1,0 +1,29 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.Table;
+
+@Entity
+@Table
+public class Location {
+	@Id
+	@GeneratedValue
+	private String locid;
+	
+	
+	private String row;
+	
+	private String xcoor;
+	
+	private String ycoor;
+	
+	@JoinColumns({
+		@JoinColumn(name="row"),
+		@JoinColumn(name="xcoor"),
+		@JoinColumn(name="ycoor"),
+	})
+	private String loc;
+}

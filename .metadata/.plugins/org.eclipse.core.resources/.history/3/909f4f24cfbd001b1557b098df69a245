@@ -1,0 +1,91 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="orderlines")
+public class Orderline {
+	@Id
+	private String olno;
+	private Integer qty;
+	private Float vol;
+	private Integer pickqty;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ordno")
+    private Order ordno;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="prodno")
+	private Product prodno;
+	
+	@OneToMany(
+	mappedBy="orderline",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Shipment> shipments;
+	
+	public Orderline() {
+		
+	}
+
+	public Orderline(String olno, Integer qty, Float vol, Order ordno, Product prodno, Integer pickqty) {
+		this.olno = olno;
+		this.qty = qty;
+		this.vol = vol;
+		this.ordno = ordno;
+		this.prodno = prodno;
+		this.pickqty = pickqty;
+	}
+
+	public String getOlno() {
+		return olno;
+	}
+
+	public void setOlno(String olno) {
+		this.olno = olno;
+	}
+
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
+	}
+
+	public Float getVol() {
+		return vol;
+	}
+
+	public void setVol(Float vol) {
+		this.vol = vol;
+	}
+
+	public Order getOrdno() {
+		return ordno;
+	}
+
+	public void setOrdno(Order ordno) {
+		this.ordno = ordno;
+	}
+
+	public Product getProdno() {
+		return prodno;
+	}
+
+	public void setProdno(Product prodno) {
+		this.prodno = prodno;
+	}
+	
+	
+}

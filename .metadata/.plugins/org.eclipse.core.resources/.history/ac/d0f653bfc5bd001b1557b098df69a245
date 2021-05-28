@@ -1,0 +1,74 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="consignments")
+public class Consignment {
+	@Id
+	private String consid;
+	private Float consvol;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="unitid")
+	private Transportunit unitid;
+
+	@OneToMany(
+	mappedBy="consignment",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Consignmentline> conslines;
+
+	public Consignment() {
+		
+	}
+
+	public Consignment(String consid, Float consvol, Transportunit  unitid) {
+		this.consid = consid;
+		this.consvol = consvol;
+		this.unitid = unitid;
+	}
+
+	public String getConsid() {
+		return consid;
+	}
+
+	public void setConsid(String consid) {
+		this.consid = consid;
+	}
+
+	public Float getConsvol() {
+		return consvol;
+	}
+
+	public void setConsvol(Float consvol) {
+		this.consvol = consvol;
+	}
+
+	public Transportunit getUnitid() {
+		return unitid;
+	}
+
+	public void setUnitid(Transportunit unitid) {
+		this.unitid = unitid;
+	}
+
+	public List<Consignmentline> getConslines() {
+		return conslines;
+	}
+
+	public void setConslines(List<Consignmentline> conslines) {
+		this.conslines = conslines;
+	}
+	
+	
+}

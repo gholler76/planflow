@@ -1,0 +1,61 @@
+package com.holler.planflow.models;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="pickseqs")
+public class Pickseq {
+	@Id
+	private String cycle;
+	private Integer seqno;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({
+	  	@JoinColumn(name="movetype"),
+	   	@JoinColumn(name="fromgroup"),
+		@JoinColumn(name="togroup")
+	    })
+    private Movequeue pickqueue;	
+	
+	public Pickseq() {
+		
+	}
+
+	public Pickseq(String cycle, Integer seqno, Movequeue pickqueue) {
+		this.cycle = cycle;
+		this.seqno = seqno;
+		this.pickqueue = pickqueue;
+	}
+
+	public String getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(String cycle) {
+		this.cycle = cycle;
+	}
+
+	public Integer getSeqno() {
+		return seqno;
+	}
+
+	public void setSeqno(Integer seqno) {
+		this.seqno = seqno;
+	}
+
+	public Movequeue getPickqueue() {
+		return pickqueue;
+	}
+
+	public void setPickqueue(Movequeue pickqueue) {
+		this.pickqueue = pickqueue;
+	}
+	
+	
+}

@@ -1,0 +1,28 @@
+package com.holler.planflow.services;
+
+import org.springframework.stereotype.Service;
+
+import com.holler.planflow.models.Pallet;
+import com.holler.planflow.repos.PalletRepo;
+
+@Service
+public class PalletService {
+    private final PalletRepo palletRepo;
+    
+    public PalletService(PalletRepo palletRepo) {
+        this.palletRepo = palletRepo;
+    }
+    
+    public Pallet generatePallet(Long palletid) {
+        Pallet p = new Pallet();
+        p.setPalletid(palletid);
+        p.setPtype("PA");
+        System.out.println(p);
+        return palletRepo.save(p);
+        
+    }
+    
+    
+}
+
+

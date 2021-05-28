@@ -1,0 +1,111 @@
+package com.holler.planflow.models;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@IdClass(LocId.class)
+@Table(name="locs")
+public class Loc {
+	@Id
+	@JoinColumns({
+		@JoinColumn(name="row"),
+		@JoinColumn(name="xcoor"),
+		@JoinColumn(name="ycoor"),
+	})
+	private String loc;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="area")
+    private Area area;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="loctype")
+	private Loctype loctype;
+		
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="velocity")
+	private Velocity velocity;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="status")
+	private Locstat locstat;
+	
+	@OneToOne(
+	mappedBy="loc",
+	cascade=CascadeType.ALL,
+	fetch=FetchType.LAZY)
+    private Pallet pallet;
+    	
+	public Loc() {
+		}
+
+	public Loc(String loc, Area area, Loctype loctype, Velocity velocity, Locstat locstat, Pallet pallet) {
+		super();
+		this.loc = loc;
+		this.area = area;
+		this.loctype = loctype;
+		this.velocity = velocity;
+		this.locstat = locstat;
+		this.pallet = pallet;
+	}
+
+	public String getLoc() {
+		return loc;
+	}
+
+	public void setLoc(String loc) {
+		this.loc = loc;
+	}
+
+	public Area getArea() {
+		return area;
+	}
+
+	public void setArea(Area area) {
+		this.area = area;
+	}
+
+	public Loctype getLoctype() {
+		return loctype;
+	}
+
+	public void setLoctype(Loctype loctype) {
+		this.loctype = loctype;
+	}
+
+	public Velocity getVelocity() {
+		return velocity;
+	}
+
+	public void setVelocity(Velocity velocity) {
+		this.velocity = velocity;
+	}
+
+	public Locstat getLocstat() {
+		return locstat;
+	}
+
+	public void setLocstat(Locstat locstat) {
+		this.locstat = locstat;
+	}
+
+	public Pallet getPallet() {
+		return pallet;
+	}
+
+	public void setPallet(Pallet pallet) {
+		this.pallet = pallet;
+	}
+
+	
+
+}

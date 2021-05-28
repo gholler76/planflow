@@ -1,0 +1,91 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="transportunits")
+public class Transportunit {
+	@Id
+	private String unitid;
+	private Integer maxvol;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="unitstat")
+    private Unitstat unitstat;
+	
+	@OneToMany(
+	mappedBy="unitid",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Shipment> shipments;
+	
+	@OneToMany(
+	mappedBy="unitid",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Consignment> consignments;
+
+	public Transportunit() {
+		
+	}
+
+	public Transportunit(String unitid, Integer maxvol, Unitstat unitstat) {
+		this.unitid = unitid;
+		this.maxvol = maxvol;
+		this.unitstat = unitstat;
+	}
+
+	public String getUnitid() {
+		return unitid;
+	}
+
+	public void setUnitid(String unitid) {
+		this.unitid = unitid;
+	}
+
+	public Integer getMaxvol() {
+		return maxvol;
+	}
+
+	public void setMaxvol(Integer maxvol) {
+		this.maxvol = maxvol;
+	}
+
+	public Unitstat getUnitstat() {
+		return unitstat;
+	}
+
+	public void setUnitstat(Unitstat unitstat) {
+		this.unitstat = unitstat;
+	}
+
+	public List<Shipment> getShipments() {
+		return shipments;
+	}
+
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
+	}
+
+	public List<Consignment> getConsignments() {
+		return consignments;
+	}
+
+	public void setConsignments(List<Consignment> consignments) {
+		this.consignments = consignments;
+	}
+	
+	
+	
+	
+	
+}

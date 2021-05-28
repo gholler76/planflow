@@ -1,0 +1,151 @@
+package com.holler.planflow.models;
+
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Formula;
+
+@Entity
+@Table(name="products")
+public class Product {
+	@Id
+	private String prodno;
+	private Integer pqty;
+	private Integer len;
+	private Integer wid;
+	private Integer hei;
+	@Formula("(len*wid*hei)/46656")
+	private Float vol;
+	
+	@OneToMany(
+	mappedBy="prodno",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Order> orders;
+
+	@OneToMany(
+	mappedBy="prodno",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Orderline> orderlines;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="ptype")
+    private Pallettype ptype;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="velocity")
+	private Velocity velocity;
+	
+	@OneToMany(
+	mappedBy="prodno",
+	fetch = FetchType.LAZY,
+	cascade = CascadeType.ALL)
+	private List<Consignmentline> conslines;
+	
+	
+	public Product() {
+		
+	}
+
+	public Product(String prodno, Integer pqty, Integer len, Integer wid, Integer hei, Pallettype ptype, Velocity velocity) {
+		this.prodno = prodno;
+		this.pqty = pqty;
+		this.len = len;
+		this.wid = wid;
+		this.hei = hei;
+		this.ptype = ptype;
+		this.velocity = velocity;
+	}
+
+	public String getProdno() {
+		return prodno;
+	}
+
+	public void setProdno(String prodno) {
+		this.prodno = prodno;
+	}
+
+	public Integer getPqty() {
+		return pqty;
+	}
+
+	public void setPqty(Integer pqty) {
+		this.pqty = pqty;
+	}
+
+	public Integer getLen() {
+		return len;
+	}
+
+	public void setLen(Integer len) {
+		this.len = len;
+	}
+
+	public Integer getWid() {
+		return wid;
+	}
+
+	public void setWid(Integer wid) {
+		this.wid = wid;
+	}
+
+	public Integer getHei() {
+		return hei;
+	}
+
+	public void setHei(Integer hei) {
+		this.hei = hei;
+	}
+
+	public Float getVol() {
+		return vol;
+	}
+
+	public void setVol(Float vol) {
+		this.vol = vol;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Pallettype getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(Pallettype ptype) {
+		this.ptype = ptype;
+	}
+
+	public Velocity getVelocity() {
+		return velocity;
+	}
+
+	public void setVelocity(Velocity velocity) {
+		this.velocity = velocity;
+	}
+
+	public List<Orderline> getOrderlines() {
+		return orderlines;
+	}
+
+	public void setOrderlines(List<Orderline> orderlines) {
+		this.orderlines = orderlines;
+	}
+	
+	
+	
+}
