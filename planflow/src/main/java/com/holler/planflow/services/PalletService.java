@@ -11,52 +11,53 @@ import com.holler.planflow.repos.PalletRepo;
 
 @Service
 public class PalletService {
-    private final PalletRepo palletRepo;
-    
-    public PalletService(PalletRepo palletRepo) {
-        this.palletRepo = palletRepo;
-    }
-    
-    public String generatePallet(Integer qty) {
-    	for (Integer i = 1; i<=qty; i++) {
-    		Pallet p = new Pallet();
-			Long palletid = System.currentTimeMillis();			
+	private final PalletRepo palletRepo;
+
+	public PalletService(PalletRepo palletRepo) {
+		this.palletRepo = palletRepo;
+	}
+
+	// generate a pallet using current time milli as the ID
+	public String generatePallet(Integer qty) {
+		for (Integer i = 1; i <= qty; i++) {
+			Pallet p = new Pallet();
+			Long palletid = System.currentTimeMillis();
 			p.setPalletid(palletid);
 			p.setPtype("PA");
 			palletRepo.save(p);
-    	}
-    	return "Pallet created";
-    }
-    
-    public List<Pallet> getAllPallets() {
+		}
+		return "Pallet created";
+	}
+
+	public List<Pallet> getAllPallets() {
 		return (List<Pallet>) palletRepo.findAll();
 	}
-    
-    public void deleteAllPallets() { 
-    	palletRepo.deleteAll();
-    }
-    	    
-    public Pallet findRandomPallet() {
-    	Long id = palletRepo.findRandomPalletId();
-    	
-    	Optional<Pallet> p = palletRepo.findById(id);
-    	
-    	if (p.isPresent()) {
-    		return p.get();
-    	} 
-    	return null;
-    }
-    
-    public Pallet storePallet(Pallet p, Location l) {
+
+	public void deleteAllPallets() {
+		palletRepo.deleteAll();
+	}
+
+	// select random pallet to be put away
+	public Pallet findRandomPallet() {
+		Long id = palletRepo.findRandomPalletId();
+
+		Optional<Pallet> p = palletRepo.findById(id);
+
+		if (p.isPresent()) {
+			return p.get();
+		}
+		return null;
+	}
+
+	// perform putaway function on pallet by selecting a random location
+	public Pallet storePallet(Pallet p, Location l) {
 		p.getLocation();
 		p.setLocation(l);
 		return palletRepo.save(p);
-    }
-    
-    public void shipPallets() {
-    	palletRepo.deleteStoredPallets();
-    }
-    	
+	}
+
+	public void shipPallets() {
+		palletRepo.deleteStoredPallets();
+	}
+
 }
-
-

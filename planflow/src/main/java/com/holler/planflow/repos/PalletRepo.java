@@ -9,16 +9,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.holler.planflow.models.Pallet;
 
 @Repository
-public interface PalletRepo extends CrudRepository<Pallet, Long>{
+public interface PalletRepo extends CrudRepository<Pallet, Long> {
 
-	@Query(value="Select palletid from pallets where location is null order by rand() limit 1", nativeQuery=true)
+	// select a random pallet from the pallets table
+	@Query(value = "Select palletid from pallets where location is null order by rand() limit 1", nativeQuery = true)
 	Long findRandomPalletId();
-	
-	
-	@Query(value="Delete from pallets where location is not null", nativeQuery=true)
+
+	// when pallet is "shipped", delete that pallet from location
+	@Query(value = "Delete from pallets where location is not null", nativeQuery = true)
 	@Modifying
 	@Transactional
 	void deleteStoredPallets();
-	
-	
+
 }
